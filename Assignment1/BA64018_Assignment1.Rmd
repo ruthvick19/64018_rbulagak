@@ -1,0 +1,181 @@
+---
+title: "BA64018_Assignment1"
+author: "Ruthvick Bulagakula"
+date: "2023-09-10"
+output:
+  pdf_document: default
+  html_document: default
+KSU ID: '811221623'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Problem 1
+
+1. Back Savers is a company that produces backpacks primarily for students. They are
+considering offering some combination of two different models—the Collegiate and the
+Mini. Both are made out of the same rip-resistant nylon fabric. Back Savers has a long-
+term contract with a supplier of the nylon and receives a 5000 square-foot shipment of
+the material each week. Each Collegiate requires 3 square feet while each Mini requires 2
+square feet. The sales forecasts indicate that at most 1000 Collegiates and 1200 Minis can
+be sold per week. Each Collegiate requires 45 minutes of labor to produce and generates
+a unit profit of $32. Each Mini requires 40 minutes of labor and generates a unit profit of
+$24. Back Savers has 35 laborers that each provides 40 hours of labor per week.
+Management wishes to know what quantity of each type of backpack to produce per
+week.
+
+    a. Clearly define the decision variables
+    b. What is the objective function?
+    c. What are the constraints?
+    d. Write down the full mathematical formulation for this LP problem.
+    
+### LP Model for Problem 1
+
+This represents data in the table format.
+
+```{r}
+data = matrix(c(3,1000,45, '$32',
+                2,1200,40,'$24'), ncol=4, byrow = TRUE)
+
+colnames(data) = c('Square-Feet', 'Sales', 'Time', 'Profit')
+rownames(data) = c('Collegiate', 'Mini')
+
+final = as.table(data)
+
+print(final)
+
+```
+**Decision Variable**
+
+Let us assume, $x_c$ for number of collegiate and $x_m$ for number of mini.
+
+**Objective Function**
+
+Objective for back savers is to increase profits. So, collegiate is making $32$ Dollars profit and mini is making $24$ Dollars profit.
+
+Objective function for Back savers: $Z = 32x_c + 24x_m$
+
+**Constraints**
+
+***Material Constraint:***
+
+Total square foot nylon material used for production cannot exceed $5000$ square feet. So, this can be expressed as $3x_c + 2x_m  <= 5000$
+
+***Sales Constraint:***
+
+Sales forecasts indicate that $1000$ collegiatee backpacks and $1200$ mini backpacks can be sold per week. So, this can be expressed as $x_c <= 1000$ , $x_m <= 1200$
+
+***Labor Constraint:***
+
+Back savers has $35$ labors and they work $40$ hours per week each. Each collegiate need $45$ mins of labor and each mini need $40$ mins of labor. So, this can be expressed in hours by dividing mins by $60$ since we have hours included as $40$ per week. 
+
+$0.75x_c + 0.67x_m <= 35*40$
+
+$0.75x_c + 0.67x_m <= 1400$
+
+***Non Negative Constraint:***
+
+$x_c>=0$ , $x_m>=0$
+
+    
+### Problem 2
+
+2. The Weigelt Corporation has three branch plants with excess production capacity.
+Fortunately, the corporation has a new product ready to begin production, and all three
+plants have this capability, so some of the excess capacity can be used in this way. This
+product can be made in three sizes--large, medium, and small--that yield a net unit profit
+of $420, $360, and $300, respectively. Plants 1, 2, and 3 have the excess capacity to
+produce 750, 900, and 450 units per day of this product, respectively, regardless of the
+size or combination of sizes involved.
+The amount of available in-process storage space also imposes a limitation on the
+production rates of the new product. Plants 1, 2, and 3 have 13,000, 12,000, and 5,000
+square feet, respectively, of in-process storage space available for a day's production of
+this product. Each unit of the large, medium, and small sizes produced per day requires
+20, 15, and 12 square feet, respectively.
+Sales forecasts indicate that if available, 900, 1,200, and 750 units of the large,
+medium, and small sizes, respectively, would be sold per day.
+At each plant, some employees will need to be laid off unless most of the plant’s
+excess production capacity can be used to produce the new product. To avoid layoffs if
+possible, management has decided that the plants should use the same percentage of their
+excess capacity to produce the new product.
+Management wishes to know how much of each of the sizes should be produced
+by each of the plants to maximize profit.
+
+     a. Define the decision variables
+     b. Formulate a linear programming model for this problem.
+     
+### LP Model for Problem 2
+
+This represents data in the table format.
+
+```{r}
+data_plant = matrix(c(750,13000,
+                900,12000,
+                450,5000), ncol=2, byrow = TRUE)
+
+colnames(data_plant) = c('Capacity', 'Square Feet')
+rownames(data_plant) = c('P1', 'P2', 'P3')
+
+final_plant = as.table(data_plant)
+
+print(final_plant)
+
+data_size = matrix(c(20,900,'$420',
+                      15,1200,'360',
+                      12,750,'$900'), ncol=3, byrow = TRUE)
+
+colnames(data_size) = c('Square Feet', 'Sales', 'Profit')
+rownames(data_size) = c('Large', 'Medium', 'Small')
+
+final_size = as.table(data_size)
+
+print(final_size)
+
+```
+
+**Decision Variable**
+
+Let us assume, $p1_l$ , $p1_m$ , $p1_s$ for plant 1, $p2_l$ , $p2_m$ , $p2_s$ for plant 2, and $p3_l$ , $p3_m$ , $p3_s$ for plant 3.
+
+**Objective Function**
+
+Objective for Weigelt Corporation is to increase profits. So, all large units in all plants are making $420$ Dollars profit, all medium units in all plants are making $360$ Dollars profit, and all small units in all plants are making $300$ Dollars profit
+
+Objective function for Weigelt Corporation: $Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)$
+
+**Constraints**
+
+***Capacity Constraint:***
+
+Total units produced by plant 1 per week is $750$, Total units produced by plant 1 per week is $900$, and Total units produced by plant 1 per week is $450$.
+
+Plant 1: $p1_l + p1_m + p1_s <= 750$
+
+Plant 2: $p2_l + p2_m + p2_s <= 900$
+
+Plant 3: $p3_l + p3_m + p3_s <= 450$
+
+***Storage Constraint:***
+
+Total square feet required for large per week is $20$, Total square feet required for medium per week is $15$, and Total square feet required for small per week is $12$
+
+Total square feet required for plant 1 is $13000$, Total square feet required for plant 2 is $12000$, and Total square feet required for plant 3 is $5000$
+
+Plant 1: $20p1_l + 15p1_m + 12p1_s <= 13000$
+
+Plant 2: $20p2_l + 15p2_m + 12p2_s <= 12000$
+
+Plant 3: $20p3_l + 15p3_m + 12p3_s <= 5000$
+
+***Same Capaticy Constraint:***
+
+To ensure same percentage of excess capacity does not exceed at each plant. So, we can use constraint like this 
+
+$p1_l + p1_m + p1_s/750 = p2_l + p2_m + p2_s/900 = p3_l + p3_m + p3_s/450$
+
+***Non Negative Constraint:***
+
+$p1_l , p1_m , p1_s , p2_l , p2_m , p2_s , p3_l , p3_m , p3_s >= 0$
+
