@@ -55,7 +55,9 @@ Let us assume, $x_c$ for number of collegiate and $x_m$ for number of mini.
 
 Objective for back savers is to increase profits. So, collegiate is making $32$ Dollars profit and mini is making $24$ Dollars profit.
 
-Objective function for Back savers: $Z = 32x_c + 24x_m$
+Objective function for Back savers: 
+
+$Z = 32x_c + 24x_m$
 
 **Constraints**
 
@@ -78,6 +80,39 @@ $0.75x_c + 0.67x_m <= 1400$
 ***Non Negative Constraint:***
 
 $x_c>=0$ , $x_m>=0$
+
+**Mathematical Formula**
+
+Decsion Variable: 
+
+$x_c$, $x_m$
+
+Objective Function: 
+
+$Z = 32x_c + 24x_m$
+
+Constraints:
+
+Material Constraint: 
+
+$3x_c + 2x_m  <= 5000$
+
+Sales Constraint: 
+
+$x_c <= 1000$ , $x_m <= 1200$
+
+Labor Constraint: 
+
+$0.75x_c + 0.67x_m <= 35*40$
+
+$0.75x_c + 0.67x_m <= 1400$
+
+Non Negative Constraint:
+
+$x_c>=0$ , $x_m>=0$
+
+So, this above mathematical formulas will help back savers to maximize profits.
+
 
     
 ### Problem 2
@@ -143,7 +178,9 @@ Let us assume, $p1_l$ , $p1_m$ , $p1_s$ for plant 1, $p2_l$ , $p2_m$ , $p2_s$ fo
 
 Objective for Weigelt Corporation is to increase profits. So, all large units in all plants are making $420$ Dollars profit, all medium units in all plants are making $360$ Dollars profit, and all small units in all plants are making $300$ Dollars profit
 
-Objective function for Weigelt Corporation: $Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)$
+Objective function for Weigelt Corporation: 
+
+$Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)$
 
 **Constraints**
 
@@ -178,4 +215,42 @@ $p1_l + p1_m + p1_s/750 = p2_l + p2_m + p2_s/900 = p3_l + p3_m + p3_s/450$
 ***Non Negative Constraint:***
 
 $p1_l , p1_m , p1_s , p2_l , p2_m , p2_s , p3_l , p3_m , p3_s >= 0$
+
+**Mathematical Formula**
+
+Decision Variable: 
+
+$p1_l$ , $p1_m$ , $p1_s$ , $p2_l$ , $p2_m$ , $p2_s$ , $p3_l$ , $p3_m$ , $p3_s$ 
+
+Objective Function: 
+
+$Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)$
+
+Constraints:
+
+Capacity Constraint: 
+
+Plant 1: $p1_l + p1_m + p1_s <= 750$
+
+Plant 2: $p2_l + p2_m + p2_s <= 900$
+
+Plant 3: $p3_l + p3_m + p3_s <= 450$
+
+Storage Capacity: 
+
+Plant 1: $20p1_l + 15p1_m + 12p1_s <= 13000$
+
+Plant 2: $20p2_l + 15p2_m + 12p2_s <= 12000$
+
+Plant 3: $20p3_l + 15p3_m + 12p3_s <= 5000$
+
+Same Capacity Constraint:
+
+$p1_l + p1_m + p1_s/750 = p2_l + p2_m + p2_s/900 = p3_l + p3_m + p3_s/450$
+
+Non Negative Constraint: 
+
+$p1_l , p1_m , p1_s , p2_l , p2_m , p2_s , p3_l , p3_m , p3_s >= 0$
+
+So, this above mathematical formulas will help Weigelt Corporation to maximize profits.
 

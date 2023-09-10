@@ -405,8 +405,8 @@ mini.</p>
 <p>Objective for back savers is to increase profits. So, collegiate is
 making <span class="math inline">\(32\)</span> Dollars profit and mini
 is making <span class="math inline">\(24\)</span> Dollars profit.</p>
-<p>Objective function for Back savers: <span class="math inline">\(Z =
-32x_c + 24x_m\)</span></p>
+<p>Objective function for Back savers:</p>
+<p><span class="math inline">\(Z = 32x_c + 24x_m\)</span></p>
 <p><strong>Constraints</strong></p>
 <p><strong><em>Material Constraint:</em></strong></p>
 <p>Total square foot nylon material used for production cannot exceed
@@ -428,6 +428,24 @@ labor. So, this can be expressed in hours by dividing mins by <span class="math 
 <p><span class="math inline">\(0.75x_c + 0.67x_m &lt;= 1400\)</span></p>
 <p><strong><em>Non Negative Constraint:</em></strong></p>
 <p><span class="math inline">\(x_c&gt;=0\)</span> , <span class="math inline">\(x_m&gt;=0\)</span></p>
+<p><strong>Mathematical Formula</strong></p>
+<p>Decsion Variable:</p>
+<p><span class="math inline">\(x_c\)</span>, <span class="math inline">\(x_m\)</span></p>
+<p>Objective Function:</p>
+<p><span class="math inline">\(Z = 32x_c + 24x_m\)</span></p>
+<p>Constraints:</p>
+<p>Material Constraint:</p>
+<p><span class="math inline">\(3x_c + 2x_m &lt;= 5000\)</span></p>
+<p>Sales Constraint:</p>
+<p><span class="math inline">\(x_c &lt;= 1000\)</span> , <span class="math inline">\(x_m &lt;= 1200\)</span></p>
+<p>Labor Constraint:</p>
+<p><span class="math inline">\(0.75x_c + 0.67x_m &lt;=
+35*40\)</span></p>
+<p><span class="math inline">\(0.75x_c + 0.67x_m &lt;= 1400\)</span></p>
+<p>Non Negative Constraint:</p>
+<p><span class="math inline">\(x_c&gt;=0\)</span> , <span class="math inline">\(x_m&gt;=0\)</span></p>
+<p>So, this above mathematical formulas will help back savers to
+maximize profits.</p>
 </div>
 <div id="problem-2" class="section level3">
 <h3>Problem 2</h3>
@@ -499,8 +517,9 @@ print(final_size)</code></pre>
 large units in all plants are making <span class="math inline">\(420\)</span> Dollars profit, all medium units in
 all plants are making <span class="math inline">\(360\)</span> Dollars
 profit, and all small units in all plants are making <span class="math inline">\(300\)</span> Dollars profit</p>
-<p>Objective function for Weigelt Corporation: <span class="math inline">\(Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+
-300(p1_s+p2_s+p3_s)\)</span></p>
+<p>Objective function for Weigelt Corporation:</p>
+<p><span class="math inline">\(Z = 420(p1_l+p2_l+p3_l)+
+360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)\)</span></p>
 <p><strong>Constraints</strong></p>
 <p><strong><em>Capacity Constraint:</em></strong></p>
 <p>Total units produced by plant 1 per week is <span class="math inline">\(750\)</span>, Total units produced by plant 1 per
@@ -533,6 +552,35 @@ p2_s/900 = p3_l + p3_m + p3_s/450\)</span></p>
 <p><strong><em>Non Negative Constraint:</em></strong></p>
 <p><span class="math inline">\(p1_l , p1_m , p1_s , p2_l , p2_m , p2_s ,
 p3_l , p3_m , p3_s &gt;= 0\)</span></p>
+<p><strong>Mathematical Formula</strong></p>
+<p>Decision Variable:</p>
+<p><span class="math inline">\(p1_l\)</span> , <span class="math inline">\(p1_m\)</span> , <span class="math inline">\(p1_s\)</span> , <span class="math inline">\(p2_l\)</span> , <span class="math inline">\(p2_m\)</span> , <span class="math inline">\(p2_s\)</span> , <span class="math inline">\(p3_l\)</span> , <span class="math inline">\(p3_m\)</span> , <span class="math inline">\(p3_s\)</span></p>
+<p>Objective Function:</p>
+<p><span class="math inline">\(Z = 420(p1_l+p2_l+p3_l)+
+360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)\)</span></p>
+<p>Constraints:</p>
+<p>Capacity Constraint:</p>
+<p>Plant 1: <span class="math inline">\(p1_l + p1_m + p1_s &lt;=
+750\)</span></p>
+<p>Plant 2: <span class="math inline">\(p2_l + p2_m + p2_s &lt;=
+900\)</span></p>
+<p>Plant 3: <span class="math inline">\(p3_l + p3_m + p3_s &lt;=
+450\)</span></p>
+<p>Storage Capacity:</p>
+<p>Plant 1: <span class="math inline">\(20p1_l + 15p1_m + 12p1_s &lt;=
+13000\)</span></p>
+<p>Plant 2: <span class="math inline">\(20p2_l + 15p2_m + 12p2_s &lt;=
+12000\)</span></p>
+<p>Plant 3: <span class="math inline">\(20p3_l + 15p3_m + 12p3_s &lt;=
+5000\)</span></p>
+<p>Same Capacity Constraint:</p>
+<p><span class="math inline">\(p1_l + p1_m + p1_s/750 = p2_l + p2_m +
+p2_s/900 = p3_l + p3_m + p3_s/450\)</span></p>
+<p>Non Negative Constraint:</p>
+<p><span class="math inline">\(p1_l , p1_m , p1_s , p2_l , p2_m , p2_s ,
+p3_l , p3_m , p3_s &gt;= 0\)</span></p>
+<p>So, this above mathematical formulas will help Weigelt Corporation to
+maximize profits.</p>
 </div>
 
 
