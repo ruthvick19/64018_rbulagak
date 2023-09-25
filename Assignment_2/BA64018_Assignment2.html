@@ -359,8 +359,7 @@ display: none;
 
 <div id="problem" class="section level3">
 <h3>Problem</h3>
-<ol start="2" style="list-style-type: decimal">
-<li><p>The Weigelt Corporation has three branch plants with excess
+<p>The Weigelt Corporation has three branch plants with excess
 production capacity. Fortunately, the corporation has a new product
 ready to begin production, and all three plants have this capability, so
 some of the excess capacity can be used in this way. This product can be
@@ -383,11 +382,8 @@ plants should use the same percentage of their excess capacity to
 produce the new product. Management wishes to know how much of each of
 the sizes should be produced by each of the plants to maximize
 profit.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Define the decision variables</li>
-<li>Formulate a linear programming model for this problem.</li>
-</ol></li>
-</ol>
+<p>Solve the problem using lpsolve, or any other equivalent library in
+R.</p>
 </div>
 <div id="lp-model" class="section level3">
 <h3>LP Model</h3>
@@ -507,11 +503,12 @@ maximize profits.</p>
 </div>
 <div id="solution-in-r" class="section level3">
 <h3>Solution in R</h3>
-<pre class="r"><code>library(lpSolve)
-
-MaxZ = c(420,360,300,420,360,300,420,360,300)
-
-constraints = matrix(c(1,1,1,0,0,0,0,0,0,
+<p><strong>Calling Installed Library</strong>*</p>
+<pre class="r"><code>library(lpSolve)</code></pre>
+<p><strong>Defining Objective Function</strong></p>
+<pre class="r"><code>MaxZ = c(420,360,300,420,360,300,420,360,300)</code></pre>
+<p><strong>Defining Constraints</strong></p>
+<pre class="r"><code>constraints = matrix(c(1,1,1,0,0,0,0,0,0,
                  0,0,0,1,1,1,0,0,0,
                  0,0,0,0,0,0,1,1,1,
                  20,15,12,0,0,0,0,0,0,
@@ -519,15 +516,15 @@ constraints = matrix(c(1,1,1,0,0,0,0,0,0,
                  0,0,0,0,0,0,20,15,12,
                  1,0,0,1,0,0,1,0,0,
                  0,1,0,0,1,0,0,1,0,
-                 0,0,1,0,0,1,0,0,1), nrow = 9, byrow = TRUE)
-
-signs = c(&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;, &quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;)
-
-sign_values = c(750,900,450,13000,12000,5000,900,1200,750)
-
-lp_result = lp(&quot;max&quot;, MaxZ, constraints, signs, sign_values)</code></pre>
+                 0,0,1,0,0,1,0,0,1), nrow = 9, byrow = TRUE)</code></pre>
+<p><strong>Defining Signs used for constraints</strong></p>
+<pre class="r"><code>signs = c(&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;, &quot;&lt;=&quot;,&quot;&lt;=&quot;,&quot;&lt;=&quot;)</code></pre>
+<p><strong>Defining Sign values used for constraints</strong></p>
+<pre class="r"><code>sign_values = c(750,900,450,13000,12000,5000,900,1200,750)</code></pre>
 <p><strong>Objective Function</strong></p>
-<pre class="r"><code>print(lp_result)</code></pre>
+<pre class="r"><code>lp_result = lp(&quot;max&quot;, MaxZ, constraints, signs, sign_values)
+
+print(lp_result)</code></pre>
 <pre><code>## Success: the objective function is 708000</code></pre>
 <p><strong>LP Model Solution</strong></p>
 <pre class="r"><code>lp_result$solution</code></pre>

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Problem 
 
-2. The Weigelt Corporation has three branch plants with excess production capacity.
+The Weigelt Corporation has three branch plants with excess production capacity.
 Fortunately, the corporation has a new product ready to begin production, and all three
 plants have this capability, so some of the excess capacity can be used in this way. This
 product can be made in three sizes--large, medium, and small--that yield a net unit profit
@@ -34,9 +34,9 @@ excess capacity to produce the new product.
 Management wishes to know how much of each of the sizes should be produced
 by each of the plants to maximize profit.
 
-     a. Define the decision variables
-     b. Formulate a linear programming model for this problem.
-     
+Solve the problem using lpsolve, or any other equivalent library in R.
+
+
 ### LP Model 
 
 This represents data in the table format.
@@ -172,11 +172,22 @@ So, this above mathematical formulas will help Weigelt Corporation to maximize p
 
 ### Solution in R
 
+**Calling Installed Library***
 ```{r}
 
 library(lpSolve)
 
+```
+**Defining Objective Function**
+
+```{r}
+
 MaxZ = c(420,360,300,420,360,300,420,360,300)
+
+```
+**Defining Constraints**
+
+```{r}
 
 constraints = matrix(c(1,1,1,0,0,0,0,0,0,
                  0,0,0,1,1,1,0,0,0,
@@ -188,15 +199,26 @@ constraints = matrix(c(1,1,1,0,0,0,0,0,0,
                  0,1,0,0,1,0,0,1,0,
                  0,0,1,0,0,1,0,0,1), nrow = 9, byrow = TRUE)
 
+```
+**Defining Signs used for constraints**
+```{r}
+
 signs = c("<=","<=","<=","<=","<=","<=", "<=","<=","<=")
+
+```
+**Defining Sign values used for constraints**
+
+```{r}
 
 sign_values = c(750,900,450,13000,12000,5000,900,1200,750)
 
-lp_result = lp("max", MaxZ, constraints, signs, sign_values)
 ```
+
 **Objective Function**
 
 ```{r}
+
+lp_result = lp("max", MaxZ, constraints, signs, sign_values)
 
 print(lp_result)
 
