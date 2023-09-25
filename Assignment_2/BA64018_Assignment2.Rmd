@@ -119,6 +119,12 @@ To ensure same percentage of excess capacity does not exceed at each plant. So, 
 
 $p1_l + p1_m + p1_s/750 = p2_2 + p2_m + p2_s/900 = p3_3 + p3_m + p3_s/450$
 
+$900(p1_l + p1_m + p1_s) - 750(p2_2 + p2_m + p2_s) = 0$
+
+$450(p2_2 + p2_m + p2_s) - 900(p3_3 + p3_m + p3_s) = 0$
+
+$450(p3_3 + p3_m + p3_s) - 750(p1_l + p1_m + p1_s) = 0$
+
 ***Non Negative Constraint:***
 
 $p1_l , p1_m , p1_s , p2_l , p2_m , p2_s , p3_l , p3_m , p3_s >= 0$
@@ -163,6 +169,12 @@ Same Capacity Constraint:
 
 $p1_l + p1_m + p1_s/750 = p2_2 + p2_m + p2_s/900 = p3_3 + p3_m + p3_s/450$
 
+$900(p1_l + p1_m + p1_s) - 750(p2_2 + p2_m + p2_s) = 0$
+
+$450(p2_2 + p2_m + p2_s) - 900(p3_3 + p3_m + p3_s) = 0$
+
+$450(p3_3 + p3_m + p3_s) - 750(p1_l + p1_m + p1_s) = 0$
+
 Non Negative Constraint: 
 
 $p1_l , p1_m , p1_s , p2_l , p2_m , p2_s , p3_l , p3_m , p3_s >= 0$
@@ -197,20 +209,23 @@ constraints = matrix(c(1,1,1,0,0,0,0,0,0,
                  0,0,0,0,0,0,20,15,12,
                  1,0,0,1,0,0,1,0,0,
                  0,1,0,0,1,0,0,1,0,
-                 0,0,1,0,0,1,0,0,1), nrow = 9, byrow = TRUE)
+                 0,0,1,0,0,1,0,0,1,
+                 900,900,900,-750,-750,-750,0,0,0,
+                 0,0,0,450,450,450,-900,-900,-900,
+                 450,450,450,0,0,0,-750,-750,-750), ncol = 9, byrow = TRUE)
 
 ```
 **Defining Signs used for constraints**
 ```{r}
 
-signs = c("<=","<=","<=","<=","<=","<=", "<=","<=","<=")
+signs = c("<=","<=","<=","<=","<=","<=", "<=","<=","<=","=","=","=")
 
 ```
 **Defining Sign values used for constraints**
 
 ```{r}
 
-sign_values = c(750,900,450,13000,12000,5000,900,1200,750)
+sign_values = c(750,900,450,13000,12000,5000,900,1200,750,0,0,0)
 
 ```
 
