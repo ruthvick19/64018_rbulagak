@@ -76,7 +76,7 @@ Objective for Weigelt Corporation is to increase profits. So, all large units in
 
 Objective function for Weigelt Corporation: 
 
-$Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)$
+$Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p3_m)+ 300(p1_s+p2_s+p3_s)$
 
 **Constraints**
 
@@ -117,7 +117,7 @@ $p1_s + p2_s + p3_s <= 750$
 
 To ensure same percentage of excess capacity does not exceed at each plant. So, we can use constraint like this 
 
-$p1_l + p1_m + p1_s/750 = p2_l + p2_m + p2_s/900 = p3_l + p3_m + p3_s/450$
+$p1_l + p1_m + p1_s/750 = p2_2 + p2_m + p2_s/900 = p3_3 + p3_m + p3_s/450$
 
 ***Non Negative Constraint:***
 
@@ -131,7 +131,7 @@ $p1_l$ , $p1_m$ , $p1_s$ , $p2_l$ , $p2_m$ , $p2_s$ , $p3_l$ , $p3_m$ , $p3_s$
 
 Objective Function: 
 
-$Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p2_m)+ 300(p1_s+p2_s+p3_s)$
+$Z = 420(p1_l+p2_l+p3_l)+ 360(p1_m+p2_m+p3_m)+ 300(p1_s+p2_s+p3_s)$
 
 Constraints:
 
@@ -161,7 +161,7 @@ $p1_s + p2_s + p3_s <= 750$
 
 Same Capacity Constraint:
 
-$p1_l + p1_m + p1_s/750 = p2_l + p2_m + p2_s/900 = p3_l + p3_m + p3_s/450$
+$p1_l + p1_m + p1_s/750 = p2_2 + p2_m + p2_s/900 = p3_3 + p3_m + p3_s/450$
 
 Non Negative Constraint: 
 
