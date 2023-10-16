@@ -1,0 +1,241 @@
+---
+title: "BA64018_Assignment3"
+author: "Ruthvick Bulagakula"
+date: "2023-10-15"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Table representation for the transportation problem
+
+```{r}
+
+library(kableExtra)
+library(lpSolve)
+
+tran_table = matrix(c("$20", "$14", "$25", "$400", 100,
+                  "$12", "$15", "$14", "$300", 125,
+                  "$10", "$12", "$15", "$500", 150,
+                  80, 90, 70, "-", "-"), nrow = 4, byrow = TRUE)
+
+colnames(tran_table) = c("W1", "W2", "W3", "cost", "Supply")
+rownames(tran_table) = c("PlantA", "PlantB", "PlantC", "Demand")
+tran_table = as.table(tran_table)
+
+tran_table
+
+```
+
+```{r}
+
+
+tran_table %>% kable() %>% kable_classic() %>%
+  column_spec(2, border_left = TRUE) %>%
+  column_spec(6, border_left = TRUE) %>%
+  row_spec(3, extra_css = "border-bottom:dotted;")
+
+```
+The supply quantity in this transportation problem is 375, while the demand quantity is 240. There is an imbalance in supply and demand in this transportation problem.The first step in solving the unbalanced transportation problem is to create a dummy variable to turn it into a balanced problem. Since there is less demand than supply in this situation, we will establish a dummy demand (dummy column) with 135 dummy demand quantity and zero transportation cost. Following the creation of dummy demand, the transportation issue now appears as follows:
+
+```{r}
+
+
+
+tran_table1 = matrix(c(420, 414, 425, 0, 100,
+                    312, 315, 314, 0, 125,
+                    510, 512, 515, 0, 150,
+                    80, 90, 70, 135, 375), byrow = TRUE, nrow = 4)
+
+colnames(tran_table1) = c("W1", "W2", "W3", "Dummy", "Supply")
+rownames(tran_table1) = c("PlantA", "PlantB", "PlantC", "Demand")
+tran_table1 = as.table(tran_table1)
+
+tran_table1
+
+```
+
+```{r}
+
+
+tran_table1 %>% kable() %>% kable_classic() %>%
+  column_spec(2, border_left = TRUE) %>%
+  column_spec(6, border_left = TRUE) %>%
+  row_spec(4, extra_css = "border-bottom:dotted;")
+
+```
+
+Now, demand equals supply. So we can finally solve the Transportation Problem.
+
+
+**Formulate the transportation model**
+
+***Objective Function:***
+
+$$Min=420W_{11} + 414W_{12} + 425W_{13} + 0W_{14} + 312W_{21} + 315W_{22} + 314W_{23} + 0W_{24} + 510W_{31} + 512W_{32} + 515W_{33} + 0W_{34}$$
+
+
+**Supply constraint:**
+
+***Plant A:***
+
+
+$$W_{11} + W_{12} + W_{13} + W_{14} = 100$$
+
+***Plant B:***
+
+$$W_{21} + W_{22} + W_{23} + W_{24} = 125$$
+
+***Plant C:***
+
+$$W_{31} + W_{32} + W_{33} + W_{34} = 150$$
+
+**Demand constraints:**
+
+***Warehouse 1:***
+
+$$W_{11} + W_{21} + W_{31} = 80$$
+
+***Warehouse 2:***
+
+$$W_{12} + W_{22} + W_{32} = 90$$
+
+***Warehouse 3:***
+
+$$W_{13}+W_{23}+W_{33} = 70$$
+
+***Dummy warehouse:***
+
+$$W_{14}+W_{24}+W_{34} = 135$$
+
+**Non-negativity of the decision variables:**
+
+
+$$W_{11}, W_{12}, W_{13}, W_{14}, W_{21}, W_{22}, W_{23}, W_{24}, W_{31}, W_{32}, W_{33}, W_{34} >= 0$$
+
+
+## Formulating the transportation model
+
+```{r}
+
+
+costs = matrix(c(420, 414, 425, 0,
+                  312, 315, 314, 0,
+                  510, 512, 515, 0), byrow = TRUE, nrow = 3)
+
+
+row.signs = rep("=", 3)
+row.rhs = c(100, 125, 150)
+col.signs = rep("=", 4)
+col.rhs = c(80, 90, 70, 135)
+
+
+lptrans = lp.transport(costs, "min", row.signs, row.rhs, col.signs, col.rhs)
+
+
+lptrans
+
+lptrans$solution
+
+
+```
+
+## Dual of the primal transportation model
+
+In constraints, there are two types of classes: demand and supply. As we know, the constraints coefficients will become the coefficients in the objective function for dual. As the primary goal is to reduce transportation costs, the secondary goal is to maximize profit through value addition. That is the profit obtained by selling goods less the cost of producing the goods. The supply constraint coefficients are 100,125, and 150 in this case. The demand constraint coefficients are 80,90,70,135
+
+
+***Objective function:***
+
+$$Max=80x_1+90x_2+70x_3−100y_1−125y_2−150y_3$$
+
+***Constraints:***
+
+$$x_j−y_i>=z_{ij}$$
+
+***Plant A has to Supply 3 Warehouses***
+
+$$x_1-y_1≥z_{11}=420$$
+
+$$x_1−y_2≥z_{12}=414$$
+
+$$x_1−y_3≥z_{13}=425$$
+
+***Plant B has to Supply for 3 Warehouses***
+
+$$x_2−y_1≥z_{21}=312$$
+
+$$x_2−y_2≥z_{22}=315$$
+
+$$x_2−y_3≥z_{23}=314$$
+
+***Plant C has to Supply for 3 Warehouses***
+
+$$x_3−y_1≥z_{31}=510$$
+
+$$x_3−y_2≥z_{32}=512$$
+
+$$x_3−y_3≥z_{33}=515$$
+
+***Non-Negative Constraints***
+
+$$x_1, x_2, x_3, y_1, y_2, y_3, z_{11}, z_{12},  z_{13} ,z_{21}, z_{22},  z_{23},z_{31}, z_{32},  z_{33} >= 0$$
+
+## Economic Interpretation of the Dual 
+
+1. According to the MR=MC rule, here the dual constraint is 
+
+$$x_j−y_i>=z_{ij}$$
+
+. So, here the equation would be
+
+$$x_j>=z_{ij}+y_i$$  
+To be more specific, 
+
+$$x_1≥z_{11}=420+y_1$$
+, The left side is the per-unit revenue generated by selling one unit of the product. This is what we call "MR (marginal revenue) in economics. The right side is the per-unit cost of making and transporting goods. This is called "MC.(marginal cost). Plant A keeps on increasing production and shipping to Warehouse 1 as long as 
+
+$$x_1≥z_{11}=420+y_1$$
+when 
+
+$$MR>=MC$$
+
+.In Contrast, Plant A reduces production and shipping if 
+
+$$x_1≤z_{11}=420+y_1$$ 
+when 
+
+$$MR<=MC$$
+
+Both are dynamic situations where either production increases or decreases. When 
+
+$$x_1=z_{11}=420+y_1$$
+, when 
+
+$$MR=MC$$
+
+, the producer neither increases production nor decreases it. This is what we call equilibrium for profit maximization. Thus, the transportation cost minimization problem is equivalent to profit maximization in the dual, which ends up with 
+
+$$MR=MC$$
+
+2. Whether to hire a shipping company or not for shipping goods if 
+
+$$x_j−y_i>=z_{ij}$$
+
+Plant A directly supplies goods from Plant A to Warehouse 1. However, if the supplier finds any other shipping company that is able to transport goods from the plants to the warehouses satisfying 
+
+$$x_j−y_i<=z_{ij}$$
+
+, then the supplier hires the shipping company rather than directly involved in transporting goods. If the producer finds a shipping company who is willing to ship goods satisfying the constraints rather than >=, then the producer hires the shipping company. So, if
+
+$$x_j−y_i>=z_{ij}$$
+, the producer (supplier) and the shipper will be the same. But if 
+
+$$x_j−y_i<=z_ij$$
+
+, then the producer (supplier) just produces goods and hires another shipping company for the transportation of goods.
+
