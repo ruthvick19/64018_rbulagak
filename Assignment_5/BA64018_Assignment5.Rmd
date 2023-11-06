@@ -141,7 +141,7 @@ $$MaxZ=P−5y_1−2y_2$$
 
 Management's objective function can be expressed in terms of $$x_1, x_2, x_3, y_1^+, y_1^-, y_2^+, and y_2^-$$
 
-$$MaxZ=15x_1+12x_2+20x_3−5(y_1^--y_1^+)-0(y_2^-)+2(y_2^+)$$
+$$MaxZ=15x_1+12x_2+20x_3−5(y_1^-+y_1^+)-0(y_2^-)-2(y_2^+)$$
 
 
 3. Formulate and solve the linear programming model. What are your findings?
