@@ -552,19 +552,19 @@ maximize the objective function.</p>
 ## $verbose
 ## [1] &quot;neutral&quot;</code></pre>
 <p>Adding constraints to the LP problem.</p>
-<pre class="r"><code>set.row(solvelp,1,c(0,1,1,1,1,1,0), indices = c(1,2,3,4,5,6,7))
+<pre class="r"><code>set.row(solvelp,1,c(0,1,1,1,1,1,0))
 
-set.row(solvelp,2,c(0,0,1,1,1,1,1), indices = c(1,2,3,4,5,6,7))
+set.row(solvelp,2,c(0,0,1,1,1,1,1))
 
-set.row(solvelp,3,c(1,0,0,1,1,1,1), indices = c(1,2,3,4,5,6,7))
+set.row(solvelp,3,c(1,0,0,1,1,1,1))
 
-set.row(solvelp,4,c(1,1,0,0,1,1,1), indices = c(1,2,3,4,5,6,7))
+set.row(solvelp,4,c(1,1,0,0,1,1,1))
 
-set.row(solvelp,5,c(1,1,1,0,0,1,1), indices = c(1,2,3,4,5,6,7))
+set.row(solvelp,5,c(1,1,1,0,0,1,1))
 
-set.row(solvelp,6,c(1,1,1,1,0,0,1), indices = c(1,2,3,4,5,6,7))
+set.row(solvelp,6,c(1,1,1,1,0,0,1))
 
-set.row(solvelp,7,c(1,1,1,1,1,0,0), indices = c(1,2,3,4,5,6,7))</code></pre>
+set.row(solvelp,7,c(1,1,1,1,1,0,0))</code></pre>
 <p>Setting the right hand side values for the constraints in LP
 problem.</p>
 <pre class="r"><code>right = c(20, 25, 22, 28, 25, 22, 20)
@@ -587,10 +587,10 @@ function.</p>
 <pre><code>## [1] 25550</code></pre>
 <p>Getting the values of decision variables.</p>
 <pre class="r"><code>get.variables(solvelp)</code></pre>
-<pre><code>## [1]  3  5  4  1  7  3 10</code></pre>
+<pre><code>## [1]  2  6  4  0  8  2 11</code></pre>
 <p>Getting the values of constraints.</p>
 <pre class="r"><code>get.constraints(solvelp)</code></pre>
-<pre><code>## [1] 20 25 24 28 25 23 20</code></pre>
+<pre><code>## [1] 20 25 23 29 25 23 20</code></pre>
 </div>
 <div id="find-the-total-cost-and-the-number-of-workers-available-each-day" class="section level3">
 <h3>3.Find the total cost and the number of workers available each
@@ -600,8 +600,8 @@ day</h3>
 the values of the decision variables:</p>
 <p>Number of people working on Sunday = 20</p>
 <p>Number of people working on Monday = 25</p>
-<p>Number of people working on Tuesday = 24</p>
-<p>Number of people working on Wednesday = 28</p>
+<p>Number of people working on Tuesday = 23</p>
+<p>Number of people working on Wednesday = 29</p>
 <p>Number of people working on Thursday = 25</p>
 <p>Number of people working on Friday = 23</p>
 <p>Number of people working on Saturday = 20</p>
